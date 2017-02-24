@@ -54,6 +54,16 @@
             }
             return $clients;
         }
+        function updateName($new_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE client SET name = '{$new_name}' WHERE id = {$this->getId()};");
+            $this->setClientName($new_name);
+        }
+        function updateStylistId($new_stylist_id)
+        {
+            $GLOBALS['DB']->exec("UPDATE stylist SET stylist_id = {$new_stylist_id} WHERE id = {$this->getId()};");
+            $this->setStylistId($new_stylist_id);
+        }
 
 
 
