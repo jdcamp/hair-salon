@@ -92,10 +92,15 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
         //Act
         $result = Client::getAll();
-
+        foreach ($result as  $client)
+        {
+            if($client == $test_client)
+            {
+                $result = $client;
+            }
+        }
         //Assert
-        $this->assertEquals($test_client, $result[$test_client->getId()-1]);
-
+        $this->assertEquals($test_client, $result);
     }
 
     function test_updateName()
@@ -130,6 +135,47 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($new_stylist_id, $result);
 
     }
+
+    function test_deleteAll()
+    {
+        //Arrange
+        $name1 = 'Bob';
+        $stylist_id1 = 1;
+        $test_client1 = new Client($id, $name, $stylist_id1);
+        $test_client1->save();
+        $name2 = 'Mary';
+        $stylist_id1 = 2;
+        $test_client2 = new Client($id, $name, $stylist_id2);
+        $test_client2->save();
+
+        //Act
+        Client::deleteAll();
+        $result = Client::getAll();
+
+        //Assert
+        $this->assertEquals([], $result);
+    }
+    function test_deleteOne()
+    {
+        //Arrange
+        $name1 = 'Bob';
+        $stylist_id1 = 1;
+        $test_client1 = new Client($id, $name, $stylist_id1);
+        $test_client1->save();
+        $name2 = 'Mary';
+        $stylist_id2 = 2;
+        $test_client2 = new Client($id, $name2, $stylist_id2);
+        $test_client2->save();
+        $test_client1->deleteOne();
+
+        //Act
+        $result = Client::find($test_client1);
+
+        //Assert
+        $this->assertEquals(null, $result);
+    }
+
+
 }
 
 

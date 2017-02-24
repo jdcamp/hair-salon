@@ -45,6 +45,7 @@ class Stylist
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM stylist;");
+
     }
 
     static function find($search_id)
@@ -62,6 +63,7 @@ class Stylist
     function deleteOne()
     {
         $GLOBALS['DB']->exec("DELETE FROM stylist WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM client WHERE stylist_id = {$this->getId()};");
     }
 
     function update($new_name)

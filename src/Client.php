@@ -65,6 +65,28 @@
             $this->setStylistId($new_stylist_id);
         }
 
+        function deleteOne()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM client WHERE id = {$this->getId()};");
+        }
+
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM client;");
+        }
+
+        static function find($search_id)
+        {
+            $clients = Client::getAll();
+            foreach ($clients as $client) {
+                $client_id = $client->getId();
+                if ($client_id == $search_id) {
+                    return $client;
+                }
+            }
+            return null;
+        }
+
 
 
     }
