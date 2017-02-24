@@ -1,4 +1,3 @@
-
 <?php
 class Stylist
 {
@@ -33,23 +32,32 @@ class Stylist
     static function getAll()
     {
         $returned_stylist = $GLOBALS['DB']->query("SELECT * FROM stylist;");
-        $stylists = array();
+        $stylists         = array();
         foreach ($returned_stylist as $stylist) {
             $stylist_name = $stylist['name'];
-            $id = $stylist['id'];
-            $new_stylist = new Stylist($id, $stylist_name);
+            $id           = $stylist['id'];
+            $new_stylist  = new Stylist($id, $stylist_name);
             array_push($stylists, $new_stylist);
         }
         return $stylists;
     }
 
     static function deleteAll()
-{
-    $GLOBALS['DB']->exec("DELETE FROM stylist;");
-}
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stylist;");
+    }
 
-
-
+    static function find($search_id)
+    {
+        $stylists = Stylist::getAll();
+        foreach ($stylists as $stylist) {
+            $stylist_id = $stylist->getId();
+            if ($stylist_id == $search_id) {
+                return $stylist;
+            }
+        }
+        return null;
+    }
 
 }
 
