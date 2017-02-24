@@ -35,6 +35,27 @@
         {
             $this->stylist_id = $stylist_id;
         }
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO client (name, stylist_id) VALUES ('{$this->getClientName()}', {$this->getStylistId()})");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        static function getAll()
+        {
+            $returned_client = $GLOBALS['DB']->query("SELECT * FROM client;");
+            $clients         = array();
+            foreach ($returned_client as $client) {
+                $id           = $client['id'];
+                $client_name  = $client['name'];
+                $stylist_id   = $client['stylist_id'];
+                $new_client   = new Client($id, $client_name, $stylist_id);
+                array_push($clients, $new_client);
+            }
+            return $clients;
+        }
+
+
 
     }
 ?>
