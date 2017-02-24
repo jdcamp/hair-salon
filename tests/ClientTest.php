@@ -87,7 +87,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $name = 'Bob';
         $stylist_id = 1;
         $test_client = new Client($id, $name, $stylist_id);
-        var_dump($test_client);
 
         $test_client->save();
 
@@ -95,7 +94,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $result = Client::getAll();
 
         //Assert
-        $this->assertEquals($test_client, $result[$GLOBALS['DB']->lastInsertId()]);
+        $this->assertEquals($test_client, $result[$test_client->getId()-1]);
 
     }
 }

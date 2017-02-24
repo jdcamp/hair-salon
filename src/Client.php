@@ -46,9 +46,9 @@
             $returned_client = $GLOBALS['DB']->query("SELECT * FROM client;");
             $clients         = array();
             foreach ($returned_client as $client) {
-                $id           = $client['id'];
+                $id           = (int)$client['id'];
                 $client_name  = $client['name'];
-                $stylist_id   = $client['stylist_id'];
+                $stylist_id   = (int)$client['stylist_id'];
                 $new_client   = new Client($id, $client_name, $stylist_id);
                 array_push($clients, $new_client);
             }
