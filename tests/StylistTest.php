@@ -14,6 +14,10 @@ $DB = new PDO($server, $username, $password);
 
 class StylistTest extends PHPUnit_Framework_TestCase
 {
+    protected function tearDown()
+    {
+        Stylist::deleteAll();
+    }
     function test_getStylistName()
     {
         //Arrange
@@ -55,6 +59,21 @@ class StylistTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($id, $result);
     }
 
+    function test_save()
+    {
+        //Arrange
+        $name = 'Bob';
+        $id = $GLOBALS['DB']->lastInsertId();
+        $test_stylist = new Stylist($id, $name);
+        $test_stylist->save();
+
+        //Act
+        $result = Stylist::getAll();
+
+        //Assert
+        $this->assertEquals($test_stylist, $result[0]);
+
+    }
 }
 
 
