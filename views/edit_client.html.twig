@@ -1,0 +1,18 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Edit
+    {{client.getClientName}}{% endblock %}
+{% block body %}
+    <h1>{{client.getClientName}}</h1>
+    <form action="/edit_client_name/{{client.getId}}" method="post">
+        <input name="_method" type="hidden" value="patch">
+        <label for="new_name">Enter new name</label>
+        <input id="new_name" type="text" name="new_name">
+        <button class="btn btn-info" type="submit">update</button>
+    </form>
+    <a href="/view_clients/{{client.getStylistId}}">
+        <button type="button" name="button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            Back</button>
+    </a>
+{% endblock %}

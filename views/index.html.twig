@@ -19,8 +19,16 @@
                 </form>
 
                 {% for stylist in stylists %}
+                <div class="container-fluid">
                     <h3>{{stylist.getStylistName}}</h3>
                     <div class="row">
+                        <div class="col-sm-2">
+                            <a href="/view_clients/{{stylist.getId}}">
+                                <button type="button" name="button" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    View Current Clients</button>
+                            </a>
+                        </div>
                         <div class="col-sm-1">
                             <a href="/edit_stylist/{{stylist.getId}}">
                                 <button type="button" name="button" class="btn btn-info">
@@ -38,6 +46,7 @@
                             </form>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
             </div>
         {% endblock %}

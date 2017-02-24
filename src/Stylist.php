@@ -72,6 +72,20 @@ class Stylist
         $this->setStylistName($new_name);
     }
 
+    function getClients()
+     {
+         $clients = array();
+         $found_clients = $GLOBALS['DB']->query("SELECT * FROM client WHERE stylist_id = {$this->getId()};");
+         foreach ($found_clients as $client) {
+             $client_id = $client['id'];
+             $name = $client['name'];
+             $stylist_id = $client['stylist_id'];
+             $new_client = new Client($client_id, $name, $stylist_id);
+             array_push($clients, $new_client);
+         }
+         return $clients;
+     }
+
 }
 
 ?>

@@ -1,0 +1,42 @@
+{% extends 'index.html.twig' %}
+
+{% block Title %}{{stylist.getStylistName}}{% endblock %}
+
+{% block body %}
+    <h2>{{stylist.getStylistName}}</h2>
+    <a href="/">
+        <button type="button" name="button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-home"></span> Home</button>
+    </a>
+    <form action="/add_client/{{stylist.getId}}" method="post">
+        <label for="client_name">Name</label>
+        <input type="text" name="client_name" value="">
+        <button type="submit" name="button" class="btn btn-success">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add</button>
+    </form>
+    {% for client in clients %}
+        <div class="container-fluid">
+            <h4>{{client.getClientName}}</h4>
+            <div class="row">
+                <div class="col-sm-1">
+                    <a href="/edit_client/{{client.getId}}">
+                        <button type="button" name="button" class="btn btn-info">
+                            <span class="glyphicon glyphicon-wrench"></span>
+                            Edit</button>
+                    </a>
+                </div>
+                <div class="col-sm-1">
+                    <form action="/delete_client/{{ client.getId }}" method="post">
+                        <input name="_method" type="hidden" value="delete">
+                        <button class="btn btn-danger" type="submit">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock %}
