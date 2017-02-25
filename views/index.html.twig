@@ -14,39 +14,46 @@
                 <form action="/add_stylist" method="post">
                     <label for="name">Name</label>
                     <input type="text" name="name" value="">
-
-                    <button type="submit" name="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                    <button type="submit" name="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Add</button>
                 </form>
-
+                <form action="/delete_all_stylists" method="post">
+                    <input name="_method" type="hidden" value="delete">
+                    <button class="btn btn-danger" type="submit">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        Delete all Stylists and Clients
+                    </button>
+                </form>
                 {% for stylist in stylists %}
-                <div class="container-fluid">
-                    <h3>{{stylist.getStylistName}}</h3>
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <a href="/view_clients/{{stylist.getId}}">
-                                <button type="button" name="button" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-user"></span>
-                                    View Current Clients</button>
-                            </a>
-                        </div>
-                        <div class="col-sm-1">
-                            <a href="/edit_stylist/{{stylist.getId}}">
-                                <button type="button" name="button" class="btn btn-info">
-                                    <span class="glyphicon glyphicon-wrench"></span>
-                                    Edit</button>
-                            </a>
-                        </div>
-                        <div class="col-sm-1">
-                            <form action="/delete_stylist/{{ stylist.getId }}" method="post">
-                                <input name="_method" type="hidden" value="delete">
-                                <button class="btn btn-danger" type="submit">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    Delete
-                                </button>
-                            </form>
+                    <div class="container-fluid">
+                        <h3>{{stylist.getStylistName}}</h3>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <a href="/view_clients/{{stylist.getId}}">
+                                    <button type="button" name="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        View Current Clients</button>
+                                </a>
+                            </div>
+                            <div class="col-sm-1">
+                                <a href="/edit_stylist/{{stylist.getId}}">
+                                    <button type="button" name="button" class="btn btn-info">
+                                        <span class="glyphicon glyphicon-wrench"></span>
+                                        Edit</button>
+                                </a>
+                            </div>
+                            <div class="col-sm-1">
+                                <form action="/delete_stylist/{{ stylist.getId }}" method="post">
+                                    <input name="_method" type="hidden" value="delete">
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
             </div>
         {% endblock %}
