@@ -23,7 +23,7 @@ Hair salon app that creates relationships between clients and stylists
 * From web folder in project, Start PHP > php -S localhost:8000
 * In web browser open localhost:8000
 
-_Error with importing mySQL files_
+####Error with importing mySQL files
 _After running "/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot" use the following commands in terminal to create the database structure from scratch_
 * CREATE DATABASE hair_salon;
 * USE hair_salon;
