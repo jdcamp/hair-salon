@@ -14,6 +14,11 @@ $DB = new PDO($server, $username, $password);
 
 class ClientTest extends PHPUnit_Framework_TestCase
 {
+    protected function tearDown()
+    {
+        Stylist::deleteAll();
+        Client::deleteAll();
+    }
     function test_getClientName()
     {
         //Arrange
