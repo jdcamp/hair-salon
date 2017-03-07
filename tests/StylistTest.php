@@ -23,7 +23,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $name = 'Bob';
-        $test_stylist = new Stylist($id, $name);
+        $test_stylist = new Stylist($id=null, $name);
 
         //Act
         $result = $test_stylist->getStylistName();
@@ -35,7 +35,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $name = 'Bob';
-        $test_stylist = new Stylist($id, $name);
+        $test_stylist = new Stylist($id=null, $name);
         $new_name = "Robert";
 
         //Act
@@ -51,7 +51,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
         //Arrange
         $name = 'Bob';
         $id = 1;
-        $test_stylist = new Stylist($id, $name);
+        $test_stylist = new Stylist($id=null, $name);
 
         //Act
         $result = $test_stylist->getId();
@@ -65,7 +65,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
         //Arrange
         $name = 'Bob';
         $id = $GLOBALS['DB']->lastInsertId();
-        $test_stylist = new Stylist($id, $name);
+        $test_stylist = new Stylist($id=null, $name);
         $test_stylist->save();
 
         //Act
@@ -80,10 +80,10 @@ class StylistTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $name1 = 'Bob';
-        $test_stylist1 = new Stylist($id, $name);
+        $test_stylist1 = new Stylist($id=null, $name1);
         $test_stylist1->save();
         $name2 = 'Mary';
-        $test_stylist2 = new Stylist($id, $name);
+        $test_stylist2 = new Stylist($id=null, $name2);
         $test_stylist2->save();
 
         //Act
@@ -97,7 +97,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $name = 'Bob';
-        $test_stylist1 = new Stylist($id, $name);
+        $test_stylist1 = new Stylist($id=null, $name);
         $test_stylist1->save();
         $name2 = 'Mary';
         $id2 = $GLOBALS['DB']->lastInsertId()+1;
@@ -114,7 +114,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $name = 'Bob';
-        $test_stylist = new Stylist($id, $name);
+        $test_stylist = new Stylist($id=null, $name);
         $test_stylist->save();
         $new_name = 'Robert';
         $test_stylist->update($new_name);
@@ -130,10 +130,10 @@ class StylistTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $name1 = 'Bob';
-        $test_stylist1 = new Stylist($id, $name);
+        $test_stylist1 = new Stylist($id=null, $name1);
         $test_stylist1->save();
         $name2 = 'Mary';
-        $test_stylist2 = new Stylist($id, $name);
+        $test_stylist2 = new Stylist($id=null, $name2);
         $test_stylist2->save();
         $test_stylist1->deleteOne();
 
